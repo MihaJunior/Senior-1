@@ -57,3 +57,4 @@ for day in range(365):
     if nick.alive == False:
         break
     nick.live(day)
+print(nick.name)
