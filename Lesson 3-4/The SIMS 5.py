@@ -1,9 +1,8 @@
 import random
-import random
 
 
 class Human:
-    def __init__(self, name="Human", job=None, home=None, car=None):
+    def __init__(self, name="Human", job=None, home=None, car=None, phone=None):
         self.name = name
         self.money = 100
         self.gladness = 50
@@ -11,6 +10,11 @@ class Human:
         self.job = job
         self.car = car
         self.home = home
+        self.phone = phone
+
+
+    def get_phone(self):
+         self.phone = Phone(brands_of_phone)
 
     def get_home(self):
         self.home = House()
@@ -122,10 +126,13 @@ class Human:
             self.get_home()
         if self.car is None:
             self.get_car()
-            print(f"I bought a car{self.car.brand}")
+            print(f"I bought a car {self.car.brand}")
         if self.job is None:
             self.get_job()
             print(f"I don't have a job, going to get a job {self.job.job} with salary {self.job.salary}")
+        if self.phone is None:
+            self.get_phone()
+            print(f"I don't have a phone, going to get {self.phone.brand}")
         self.days_indexes(day)
 
         dice = random.randint(1, 4)
@@ -184,6 +191,23 @@ class House:
 
 
 
+class Phone:
+    def __init__(self, brand_list):
+        self.brand = random.choice(list(brand_list))
+        self.battery = random.randint(1, 100)
+        if self.battery <= 19:
+            print("Battery is low. I will charge a phone")
+
+brands_of_phone = {
+    "an iPhone",
+    "a Xiaomi",
+    "a Samsung",
+}
+
+
+
+
+
 
 job_list = {
     "Java developer":
@@ -199,11 +223,11 @@ job_list = {
 brands_of_car = {
     "BMW": {"fuel": 100, "strength": 100,
             "consumption": 6},
-    "Lada": {"fuel": 50, "strength": 40,
+    "Audi": {"fuel": 50, "strength": 40,
              "consumption": 10},
-    "Volvo": {"fuel": 70, "strength": 150,
+    "Dodge": {"fuel": 70, "strength": 150,
               "consumption": 8},
-    "Ferrari": {"fuel": 80, "strength": 120,
+    "Ford": {"fuel": 80, "strength": 120,
                 "consumption": 14},
 }
 
@@ -216,6 +240,6 @@ class Job:
 
 
 nick = Human(name="Nick")
-for day in range(1, 8):
+for day in range(1, 12):
     if nick.live(day) == False:
         break
