@@ -1,5 +1,10 @@
+import logging
 import random
 
+logging.basicConfig(level=logging.DEBUG,
+                    filename="simslogs.log",
+                    filemode="w",
+                    format="%(asctime)s - %(levelname)s - %(message)s")
 
 class Human:
     def __init__(self, name="Human", job=None, home=None, car=None, phone=None):
@@ -11,6 +16,7 @@ class Human:
         self.car = car
         self.home = home
         self.phone = phone
+        logging.info(f"Human created: {self.name}")
 
 
     def get_phone(self):
@@ -168,11 +174,11 @@ class Human:
 
 class Auto:
     def __init__(self, brand_list):
-
         self.brand = random.choice(list(brand_list))
         self.fuel = brand_list[self.brand]["fuel"]
         self.strength = brand_list[self.brand]["strength"]
         self.consumption = brand_list[self.brand]["consumption"]
+        logging.info(f"Created car: {self.brand}, Fuel: {self.fuel}, Strength: {self.strength}, Consumption: {self.consumption}")
 
     def drive(self):
         if self.strength > 0 and self.fuel >= self.consumption:
@@ -191,12 +197,14 @@ class House:
 
 
 
+
 class Phone:
     def __init__(self, brand_list):
         self.brand = random.choice(list(brand_list))
         self.battery = random.randint(1, 100)
         if self.battery <= 19:
             print("Battery is low. I will charge a phone")
+        logging.info(f"Phone created: {self.brand}. Battery: {self.battery}")
 
 brands_of_phone = {
     "an iPhone",
@@ -237,9 +245,10 @@ class Job:
         self.job = random.choice(list(job_list))
         self.salary = job_list[self.job]["salary"]
         self.gladness_less = job_list[self.job]["gladness_less"]
+        logging.info(f"Job created: {self.job}, Salary: {self.salary}, Gladness: {self.gladness_less}")
 
 
 nick = Human(name="Nick")
-for day in range(1, 12):
+for day in range(1, 25):
     if nick.live(day) == False:
         break
