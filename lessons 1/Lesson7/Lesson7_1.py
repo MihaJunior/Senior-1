@@ -98,5 +98,5 @@ def calculate(expression):
     return eval(expression)
 
 calculate = checker(calculate)
-calculate("5+7+12")
+calculate("5+7+12+1")
 
